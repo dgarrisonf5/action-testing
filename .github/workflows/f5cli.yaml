@@ -19,20 +19,28 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install f5-cli
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
     - name: F5 CLI Login
       id: login
       run: |
         f5 config set-defaults --disable-ssl-warnings true --auto-approve
         f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
+ 
     - name: Check AS3 Installed
       id: verify
       run: | 
         echo ::set-output name=verify_results::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
+        
     - name: show output
       run: |
         echo ${{ steps.verify.outputs.verify_results }}
+        
+    - name: deploy as3 declaration
+      if: ${{ steps.verify.outputs.verify_results }}
+      run: f5 bigip extension as3 create --declaration as3.json
