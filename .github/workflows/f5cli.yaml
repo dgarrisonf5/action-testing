@@ -32,7 +32,7 @@ jobs:
       id: verify
       run: | 
         RESULT=$(f5 bigip extension as3 verify)
-        echo $RESULT
+        echo "$RESULT"
     - name: show output
       run: |
         echo $RESULT
