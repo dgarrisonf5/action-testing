@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: F5 CLI login
-        uses: ./.github/actions # Uses an action in the root directory
+        uses: ./ # Uses an action in the root directory
         id: login
         with:
           f5-cli-command: 'f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --password ${{ secrets.bigip_password }} --user admin'
