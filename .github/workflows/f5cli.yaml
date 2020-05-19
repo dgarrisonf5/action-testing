@@ -32,7 +32,7 @@ jobs:
     - name: Check AS3 Installed
       id: verify
       run: | 
-        echo ::set-output name=verify_results::$(f5 bigip extension as3 verify 2>&1)
+        echo ::set-output name=verify_results::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
     - name: show output
       run: |
         echo ${{ steps.verify.outputs.verify_results }}
