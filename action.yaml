@@ -6,7 +6,7 @@ inputs:
     description: 'F5 CLI command'
     required: true
 outputs:
-  f5-cli-command-output # id of output
+  f5-cli-command-output: # id of output
     description: 'F5 CLI command output'
 runs:
   using: 'docker'
