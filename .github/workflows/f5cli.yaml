@@ -30,9 +30,9 @@ jobs:
         f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
     - name: Check AS3 Installed
       id: verify
-      run: f5 bigip extension as3 verify
+      run: echo ::set-env name=FOO::$(f5 bigip extension as3 verify)
     - name: show output
-      run: echo "${{steps.verify.outputs}}"
+      run: echo $FOO
     - name: show more output
       run: echo "${{steps.verify.outputs.result}}"
  
