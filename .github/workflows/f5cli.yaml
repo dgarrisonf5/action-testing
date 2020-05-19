@@ -35,5 +35,5 @@ jobs:
       run: echo "${{steps.verify.outputs}}"
     - name: show more output
       run: echo "${{steps.verify.outputs.result}}"
-      run: echo "${{steps.verify.outputs.result}}"
+ 
       
