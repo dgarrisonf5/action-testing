@@ -25,8 +25,12 @@ jobs:
         pip install f5-cli
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: F5 CLI Login
+      id: login
       run: |
         f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
     - name: Check AS3 Installed
+      id: verify
       run: |
         f5 bigip extension as3 verify
+    - name: show output
+      run: echo ${{ steps.login.outputs.content }}
