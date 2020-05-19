@@ -33,4 +33,4 @@ jobs:
       run: |
         f5 bigip extension as3 verify
     - name: show output
-      run: echo ${steps.login.outputs.result}
+      run: echo "${{steps.login.outputs.result}}"
