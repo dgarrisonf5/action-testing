@@ -1,5 +1,3 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
-f5 $1
-time=$(date)
-echo "::set-output name=time::$time"
+echo ::set-output name=time::$($1 2>&1)
