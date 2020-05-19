@@ -1,17 +1,16 @@
 # action.yml
-name: 'Hello World'
+name: 'F5 CLI Docker Action'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  f5-cli-command:  # id of input
+    description: 'F5 CLI command'
     required: true
-    default: 'World'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  f5-cli-command-output # id of output
+    description: 'F5 CLI command output'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.f5-cli-command }}
 
