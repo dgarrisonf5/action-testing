@@ -28,14 +28,15 @@ jobs:
       id: login
       run: |
         f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
+        f5 config set-defaults --disable-ssl-warnings true
     - name: Check AS3 Installed
       id: verify
       run: | 
-        RESULT=$(f5 bigip extension as3 verify)
-        echo "$RESULT"
+        echo "##[set-output name=results;]$(f5 bigip extension as3 verify)
     - name: show output
       run: |
-        echo $RESULT
+        echo $results
+        echo ${{ steps.verify.outputs.results }}
     - name: show more output
       run: echo "${{steps.verify.outputs.results}}"
  
