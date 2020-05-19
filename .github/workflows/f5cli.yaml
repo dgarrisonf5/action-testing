@@ -44,7 +44,7 @@ jobs:
     - name: deploy as3 declaration
       id: deploy_as3
       if: ${{ steps.verify.outputs.verify_results }}
-      run: ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration as3.json 2>&1 | jq '.resutls[0] .code')
+      run: echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration as3.json 2>&1 | jq '.resutls[0] .code')
     
     - name: show f5 as3 deploy result
       run: echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
