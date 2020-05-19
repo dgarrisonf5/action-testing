@@ -28,7 +28,7 @@ jobs:
       id: login
       run: |
         f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
-        f5 config set-defaults --disable-ssl-warnings true
+        f5 config set-defaults --disable-ssl-warnings true --auto-approve
     - name: Check AS3 Installed
       id: verify
       run: | 
