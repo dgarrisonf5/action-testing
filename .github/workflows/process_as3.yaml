@@ -53,7 +53,7 @@ jobs:
           echo "name of chnaged file = ${changed_file}"
           echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} 2>&1 | jq '.results')
           echo "F5 AS3 declaration deploy result #1 = $deploy_results"
-          echo "F5 AS3 declaration deploy result #2 = ${deploy_results}"
+          echo "F5 AS3 declaration deploy result #2 = ${{ deploy_results }}"
           
         done
     
