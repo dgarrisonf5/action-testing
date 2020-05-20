@@ -22,13 +22,13 @@
         },
         "web_pool": {
           "class": "Pool",
-          "shareNodes": true,
           "monitors": [
             "http"
           ],
           "members": [
              {
             "servicePort": 80,
+            "shareNodes": true,
             "serverAddresses": [
               "192.0.6.10",
               "192.0.6.11"
