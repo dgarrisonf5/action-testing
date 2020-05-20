@@ -7,7 +7,7 @@
         "trace": true,
         "logLevel": "debug"
     },
-    "David": {
+    "FOUR": {
       "class": "Tenant",
       "Nginx": {
         "class": "Application",
