@@ -1,6 +1,6 @@
 {
     "class": "ADC",
-    "schemaVersion": "3.8.0",
+    "schemaVersion": "3.9.0",
     "id": "Consul_SD",
         "controls": {
         "class": "Controls",
@@ -16,7 +16,7 @@
           "class": "Service_HTTP",
           "virtualPort": 8080,
           "virtualAddresses": [
-            "30.20.20.20"
+            "40.20.20.20"
           ],
           "pool": "web_pool"
         },
@@ -28,9 +28,10 @@
           "members": [
              {
             "servicePort": 80,
+            "shareNodes": true,
             "serverAddresses": [
-              "192.0.6.10",
-              "192.0.6.11"
+              "192.0.7.10",
+              "192.0.7.11"
             ]
           }
              ]
