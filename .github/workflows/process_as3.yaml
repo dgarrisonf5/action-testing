@@ -52,7 +52,8 @@ jobs:
       if: ${{ steps.verify.outputs.verify_results }}
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
-          echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} 2>&1 | jq '.results[0] .code')
+          echo "name of chnaged file = ${changed_file}"
+          # echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} 2>&1 | jq '.results[0] .code')
         done
     
     - name: show f5 as3 deploy result
