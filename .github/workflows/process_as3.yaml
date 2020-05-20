@@ -1,4 +1,4 @@
-name: Python application
+name: Deploy AS3
 
 on:
   push:
