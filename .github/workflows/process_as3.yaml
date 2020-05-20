@@ -2,8 +2,8 @@ name: Deploy AS3
 
 on:
   push:
-    paths-ignore:
-    - ".github/**"
+    paths:
+    - "declarations/**"
     branches: [ master ]
   pull_request:
     branches: [ master ]
