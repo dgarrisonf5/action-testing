@@ -49,11 +49,11 @@ jobs:
       id: deploy_as3
       if: ${{ steps.verify.outputs.verify_results }}
       run: |
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "name of chnaged file = ${changed_file}"
-          f5 bigip extension as3 create --declaration as3.json 2>&1 | jq '.results[0] .code'
+        # for changed_file in ${{ steps.files.outputs.all }}; do
+        #  echo "name of chnaged file = ${changed_file}"
+          f5 bigip extension as3 create --declaration as3.json 2>&1
          # echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
-        done
+        # done
     
   #  - name: show f5 as3 deploy result
   #   run: echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
