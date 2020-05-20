@@ -56,5 +56,5 @@ jobs:
           echo "F5 AS3 declaration deploy result #2 = ${deploy_results}"          
         done
     
-#    - name: show f5 as3 deploy result
-#      run: echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
+    - name: show f5 as3 deploy result
+      run: echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
