@@ -44,6 +44,8 @@ jobs:
     - name: get list of changed files
       id: files
       uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'csv'
         
     - name: deploy as3 declaration
       id: deploy_as3
