@@ -22,6 +22,7 @@
         },
         "web_pool": {
           "class": "Pool",
+          "shareNodes": true,
           "monitors": [
             "http"
           ],
