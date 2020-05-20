@@ -51,7 +51,7 @@ jobs:
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
           echo "name of chnaged file = ${changed_file}"
-          echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} 2>&1 | jq '.results[0] .code')
+          echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration as3.json 2>&1 | jq '.results[0] .code')
           echo "F5 AS3 declaration deploy result = ${{ steps.deploy_as3.outputs.deploy_results }}"
         done
     
