@@ -23,5 +23,4 @@ provider "bigip" {
 resource "bigip_as3" "as3_example" {
    as3_json = file("as3.json")
    tenant_name = "bubba"
-   config_name = "yellow"
 }
