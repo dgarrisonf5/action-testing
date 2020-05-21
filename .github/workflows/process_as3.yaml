@@ -37,9 +37,11 @@ jobs:
         
     - name: F5 CLI Login
       id: login
+      env: 
+        SECRET_NAME: ${{ steps.bigip_host.outputs.bigip_secret }}
       run: |
         f5 config set-defaults --disable-ssl-warnings true --auto-approve
-        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets."${{ steps.bigip_host.outputs.bigip_secret }}" }}
+        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets."$SECRET_NAME" }}
  
     - name: Check AS3 Installed
       id: verify
