@@ -24,8 +24,8 @@ jobs:
       - name: 'Terraform Init'
         run: terraform init ./declarations/terraform
 
-      - name: 'Terraform Format'
-        run: terraform fmt -check ./declarations/terraform
+ #     - name: 'Terraform Format'
+ #       run: terraform fmt -check ./declarations/terraform
 
       - name: 'Terraform Plan'
         run: terraform plan ./declarations/terraform
