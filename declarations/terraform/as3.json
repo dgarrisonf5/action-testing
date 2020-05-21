@@ -7,7 +7,7 @@
         "trace": true,
         "logLevel": "debug"
     },
-    "ONE": {
+    "BUBBA": {
       "class": "Tenant",
       "Nginx": {
         "class": "Application",
@@ -16,7 +16,7 @@
           "class": "Service_HTTP",
           "virtualPort": 8080,
           "virtualAddresses": [
-            "50.20.20.20"
+            "80.20.20.20"
           ],
           "pool": "web_pool"
         },
@@ -30,8 +30,8 @@
             "servicePort": 80,
             "shareNodes": true,
             "serverAddresses": [
-              "192.0.7.10",
-              "192.0.7.11"
+              "192.0.9.10",
+              "192.0.9.11"
             ]
           }
              ]
