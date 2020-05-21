@@ -29,3 +29,9 @@ jobs:
 
       - name: 'Terraform Plan'
         run: terraform plan ./declarations/terraform
+
+      - name: 'Terraform Apply'
+        run: terraform apply --auto-approve ./declarations/terraform
+
+
+        
