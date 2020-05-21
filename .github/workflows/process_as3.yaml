@@ -28,7 +28,9 @@ jobs:
         
     - name: Read BIGIP Host Data
       id: bigip_host
-      run: echo ::set-output name=bigip_host::$(cat ./config/bigip.cfg | jq '.bigip[0] .host')
+      run: | 
+        echo ::set-output name=bigip_host::$(cat ./config/bigip.cfg | jq '.bigip[0] .host')
+        echo ::set-output name=bigip_secret::$(cat ./config/bigip.cfg | jq '.bigip[0] .secret')
       
     - name: Display BIGIP Host
       run: echo "BIGIP host is :/ ${{ steps.bigip_host.outputs.bigip_host }}"
@@ -37,7 +39,7 @@ jobs:
       id: login
       run: |
         f5 config set-defaults --disable-ssl-warnings true --auto-approve
-        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.bigip_password }}
+        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.${{ steps.bigip_host.outputs.bigip_host }} }}
  
     - name: Check AS3 Installed
       id: verify
@@ -54,7 +56,7 @@ jobs:
       
     - name: deploy as3 declaration
       id: deploy_as3
-      if: ${{ steps.verify.outputs.verify_results }}
+      if: steps.verify.outputs.verify_results
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
           echo "name of chnaged file = ${changed_file}"
