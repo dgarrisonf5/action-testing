@@ -28,7 +28,7 @@ jobs:
         
     - name: Read BIGIP Host Data
       id: bigip_host
-      run: echo ::set-output name=bigip_host::$(cat ./config/bigip.cfg)
+      run: echo ::set-output name=bigip_host::$(cat ./config/bigip.cfg | jq '.bigip[0] .host')
       
     - name: Display BIGIP Host
       run: echo "BIGIP host is :/ ${{ steps.bigip_host.outputs.bigip_host }}"
