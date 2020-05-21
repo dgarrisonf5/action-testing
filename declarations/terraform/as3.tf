@@ -21,6 +21,6 @@ provider "bigip" {
 // config_name is used to set the identity of as3 resource which is unique for resource.
 
 resource "bigip_as3" "as3_example" {
-   as3_json = file("./as3.json")
-   tenant_name = "bubba"
+  as3_json = file("as3.json")
+  tenant_name = "bubba"
 }
