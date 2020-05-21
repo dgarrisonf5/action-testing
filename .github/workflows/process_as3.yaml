@@ -31,13 +31,13 @@ jobs:
       run: echo ::set-output name=bigip_host::$(cat ./config/bigip.cfg)
       
     - name: Display BIGIP Host
-      run: echo "BIGIP host is :\ ${{ steps.bigip_host.outputs.bigip_host }}"
+      run: echo "BIGIP host is :/ ${{ steps.bigip_host.outputs.bigip_host }}"
         
     - name: F5 CLI Login
       id: login
       run: |
         f5 config set-defaults --disable-ssl-warnings true --auto-approve
-        f5 login --authentication-provider bigip --host 7161a8da-3edd-4ba7-af94-84509ee08f4e.access.udf.f5.com --user admin --password ${{ secrets.bigip_password }}
+        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.bigip_password }}
  
     - name: Check AS3 Installed
       id: verify
