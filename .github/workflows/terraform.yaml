@@ -1,7 +1,8 @@
 name: 'Terraform Plan'
-on: [push, pull_request]
-  paths: 
-  - "declarations/terraform/**"
+on: 
+  push:
+    paths: 
+    - "declarations/terraform/**"
 defaults:
       run:
         shell: bash
