@@ -46,12 +46,26 @@ jobs:
     - name: Check AS3 Installed
       id: verify
       run: | 
-        echo ::set-output name=verify_results::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
-        
-    - name: show output
+        echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
+
+
+    - name: set output variables
+      id: set_outputs
       run: |
-        echo ${{ steps.verify.outputs.verify_results }}
-        
+        echo ::set-output name=as3_installed::$(cat {{ steps.verify.outputs.verify_output }} | jq '.installed')
+        echo ::set-output name=as3_current::$(cat {{ steps.verify.outputs.verify_output }} | jq '.installed_version')
+        echo ::set-output name=as3_latest::$(cat {{ steps.verify.outputs.verify_output }} | jq '.installed_version')
+
+    - name: Evaluate verify results
+      id: check_as3_installed
+      if: steps.set_outputs.output.as3_installed == false
+      run: echo "as3 not installed"
+
+    - name: upgrade if needed
+      id: upgrade_as3
+      if: steps.set_outputs.outputs.as3_current < steps.set_outputs.outputs.as3_latest
+      run: echo 'installed as3 version older than latest version'    
+    
     - name: get list of changed files
       id: files
       uses: jitterbit/get-changed-files@v1
