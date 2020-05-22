@@ -4,11 +4,6 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-variable "password" {
-  default = "us-east-1"
-}
-
-
 terraform {
   required_providers {
     bigip = "=1.1.1"
