@@ -21,5 +21,5 @@ provider "bigip" {
 
 resource "bigip_as3" "as3_example" {
   as3_json = file("as3.json")
-  config_name = "myconfig"
+ #config_name = "myconfig"
 }
