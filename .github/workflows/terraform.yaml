@@ -28,10 +28,10 @@ jobs:
  #       run: terraform fmt -check ./declarations/terraform
 
       - name: 'Terraform Plan'
-        run: terraform plan -var 'password={{ secrets.bigip_password }}' ./declarations/terraform
+        run: terraform plan -var 'password=${{ secrets.bigip_password }}' ./declarations/terraform
 
       - name: 'Terraform Apply'
-        run: terraform apply -var 'password={{ secrets.bigip_password }}' --auto-approve ./declarations/terraform 
+        run: terraform apply -var 'password=${{ secrets.bigip_password }}' --auto-approve ./declarations/terraform 
 
 
         
