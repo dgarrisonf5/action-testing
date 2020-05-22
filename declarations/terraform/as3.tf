@@ -14,7 +14,7 @@ terraform {
 provider "bigip" {
   address = "b3f01d41-3618-476c-a94f-3a9be92120e9.access.udf.f5.com"
   username = "admin"
-  password = "swanlabs1"
+  password = "${{ secrets.bigip_password }}"
 }
 
 
