@@ -1,0 +1,5 @@
+{
+    "installed": true,
+    "installed_version": "3.19.1",
+    "latest_version": "3.19.1"
+}

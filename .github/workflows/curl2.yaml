@@ -1,0 +1,11 @@
+name: CURL CLI ACTION
+on: push
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: curl
+      uses: enflo/curl-action@master
+      with:
+        curl: {{ -k -v -X POST --url https://faf25477-db1b-424f-b1d0-5630a7253357.access.udf.f5.com/mgmt/shared/appsvcs/declare --header 'Content-Type:application/json' --header 'Authorization:Basic YWRtaW46c3dhbmxhYnMx' }}

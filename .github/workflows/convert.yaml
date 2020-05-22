@@ -1,0 +1,18 @@
+name: Convert
+
+on: push
+
+jobs:
+  converter:
+    name: Run converter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: fabasoad/yaml-json-xml-converter-action@v1.0.0
+        id: json2yaml
+        with:
+          path: 'as3.json'
+          from: 'json'
+          to: 'yaml'
+      - name: Print json2yaml result
+        run: echo "${{ steps.json2yaml.outputs.data }}"
