@@ -2,7 +2,7 @@ name: Comment
 
 on:
   issues:
-    types: [opened]
+    types: [closed]
 
 jobs:
   comment:
