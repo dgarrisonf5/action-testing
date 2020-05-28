@@ -33,7 +33,9 @@ jobs:
         echo ::set-output name=console-output::$(consul version)
         
     - name: Deploy Service Definition
-      run: (consul services register -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com ./nginx.json)
+      run: |
+        export CONSUL_HTTP_SSL_VERIFY=false
+        (consul services register -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com ./nginx.json)
         
         
     - name: Display console output
