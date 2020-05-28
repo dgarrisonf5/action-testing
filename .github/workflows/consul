@@ -32,6 +32,9 @@ jobs:
       run: |
         echo ::set-output name=console-output::$(consul version)
         
+    - name: Deploy Service Definition
+      run: (consul services register ./nginx.json)
+        
         
     - name: Display console output
       run: echo ${{ steps.consul.outputs.console-output }}
