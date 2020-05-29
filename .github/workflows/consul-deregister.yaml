@@ -42,8 +42,8 @@ jobs:
         export CONSUL_HTTP_SSL_VERIFY=false
         (consul services deregister -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com ./nginx.json)
         
-     - name: Show Registered Services
-       run: (consul catalog services -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com)
+    - name: Show Registered Services
+       run:(consul catalog services -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com)
         
         
     
