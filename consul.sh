@@ -8,7 +8,7 @@ CONSUL_VERSION="1.7.3"
 curl --silent --remote-name https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip
 
 #Install Consul
-unzip -o consul_${CONSUL_VERSION}_linux_amd64.zip
+sudo unzip -o consul_${CONSUL_VERSION}_linux_amd64.zip
 sudo chown root:root consul
 sudo mv consul /usr/local/bin/
 consul -autocomplete-install
