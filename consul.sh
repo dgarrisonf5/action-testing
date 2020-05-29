@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo rm -rf consul
+
 #Utils
 sudo apt-get install unzip -y
 
