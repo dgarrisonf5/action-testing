@@ -13,8 +13,6 @@ curl --silent --remote-name https://releases.hashicorp.com/consul/${CONSUL_VERSI
 sudo unzip -o consul_${CONSUL_VERSION}_linux_amd64.zip
 sudo chown root:root consul
 sudo mv consul /usr/local/bin/
-consul -autocomplete-install
-complete -C /usr/local/bin/consul consul
 
 #Create Consul User
 sudo useradd --system --home /etc/consul.d --shell /bin/false consul
@@ -50,14 +48,14 @@ sudo chown --recursive consul:consul /etc/consul.d
 sudo chmod 640 /etc/consul.d/consul.hcl
 
 cat << EOF > /etc/consul.d/consul.hcl
-datacenter = "dc1"
+datacenter = "UDF"
 data_dir = "/opt/consul"
 
 ui = true
 EOF
 
 cat << EOF > /etc/consul.d/server.hcl
-server = true
+server = false
 bootstrap_expect = 1
 
 client_addr = "0.0.0.0"
