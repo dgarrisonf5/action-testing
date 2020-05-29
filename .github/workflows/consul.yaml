@@ -7,7 +7,7 @@ name: Consul Register Service
 on:
   push:
     paths:
-    - "consul/register/**"
+    - "consul/services/register/**"
     branches: [ master ]
   pull_request:
     branches: [ master ]
