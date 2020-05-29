@@ -1,12 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Consul
+name: Consul Register Service
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  issues:
-    types: [opened]
+  push:
+    paths:
+    - "consul/register/**"
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -32,11 +34,13 @@ jobs:
       run: |
         echo ::set-output name=console-output::$(consul version)
         
-    - name: Deploy Service Definition
+    - name: Display console output
+      run: echo "This is the Consul version = ${{ steps.consul.outputs.console-output }}"
+        
+    - name: Register Service Definition
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
         (consul services register -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com ./nginx.json)
         
         
-    - name: Display console output
-      run: echo ${{ steps.consul.outputs.console-output }}
+    
