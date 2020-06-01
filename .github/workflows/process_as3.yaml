@@ -45,9 +45,11 @@ jobs:
  
     - name: Check AS3 Installed
       id: verify
-      run: | 
-        echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
+      run: echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
 
+    - name: Check #2
+      id: check
+      run: echo ::set-output name=verify_output_2::$(f5 bigip extension as3 verify)
 
     - name: set output variables
       id: set_outputs
