@@ -49,7 +49,7 @@ jobs:
 
     - name: just echo the output
       id: echo
-      run: echo "THIS IS THE OUTPUT = " $(cat ${{ steps.verify.outputs.verify_output }} )
+      run: echo "THIS IS THE OUTPUT = ${{ steps.verify.outputs.verify_output }} 
 
     - name: Check #2
       id: check
