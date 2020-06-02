@@ -52,12 +52,12 @@ jobs:
     - name: set output variables
       id: set_outputs
       run: |
-        echo "${{ steps.verify.outputs.verify_output }} | jq '.installed'"
+        echo ::set-output name=as3_installed::"${{ steps.verify.outputs.verify_output }} | jq '.installed'"
 
     - name: Evaluate verify results
       id: check_as3_installed
-      if: steps.set_outputs.output.as3_installed == false
-      run: echo "as3 not installed"
+#      if: steps.set_outputs.output.as3_installed == false
+      run: echo "THIS IS THE INSTALL STATUS " ${{ steps.set_outputs.outputs.as3_installed }}
 
     - name: upgrade if needed
       id: upgrade_as3
