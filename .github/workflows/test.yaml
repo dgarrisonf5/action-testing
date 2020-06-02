@@ -52,7 +52,7 @@ jobs:
     - name: set output variables
       id: set_outputs
       run: |
-        echo ::set-output name=as3_installed::${{ steps.verify.outputs.verify_output }} 
+        echo ::set-output name=as3_installed::${{ steps.verify.outputs.verify_output }} | jq '.installed'
 
     - name: Evaluate verify results
       id: check_as3_installed
