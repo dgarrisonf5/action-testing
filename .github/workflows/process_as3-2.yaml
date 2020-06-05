@@ -56,8 +56,8 @@ jobs:
 
     - name: Evaluate verify results
       id: check_as3_installed
-      if: steps.set_outputs.output.as3_installed == false
-      run: echo "as3 not installed"
+#      if: steps.set_outputs.output.as3_installed == false
+      run: echo "AS3 install status = ${{ steps.set_outputs.output.as3_installed }}"
 
     - name: upgrade if needed
       id: upgrade_as3
