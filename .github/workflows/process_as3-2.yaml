@@ -52,10 +52,10 @@ jobs:
     - name: set output variables
       id: set_outputs
       run: |
-       (echo '${{ toJson(steps.verify.outputs.verify_output) }}' | jq '.installed')
-        echo ::set-output name=as3_installed::$(echo '${{ toJson(steps.verify.outputs.verify_output) }}' | jq '.installed'
-        echo ::set-output name=as3_current::(echo '${{ steps.verify.outputs.verify_output }}' | jq '.installed_version')
-        echo ::set-output name=as3_latest::(echo '${{ steps.verify.outputs.verify_output }}' | jq '.installed_version')
+       # (echo ${{ toJson(steps.verify.outputs.verify_output) }} | jq '.installed')
+        echo ::set-output name=as3_installed::$(echo ${{ toJson(steps.verify.outputs.verify_output) }} | jq '.installed'
+       # echo ::set-output name=as3_current::(echo '${{ steps.verify.outputs.verify_output }}' | jq '.installed_version')
+       # echo ::set-output name=as3_latest::(echo '${{ steps.verify.outputs.verify_output }}' | jq '.installed_version')
 
     - name: Evaluate verify results
       id: check_as3_installed
