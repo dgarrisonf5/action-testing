@@ -1,4 +1,4 @@
-name: Deploy AS3
+name: Deploy AS3 Redux
 
 on:
   push:
