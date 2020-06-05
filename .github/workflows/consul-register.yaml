@@ -51,7 +51,7 @@ jobs:
     - name: Show Registered Services
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
-        (consul catalog services -http-addr=${{ steps.consul_host.outputs.consul_host }}
+        (consul catalog services -http-addr=${{ steps.consul_host.outputs.consul_host }})
         
         
     
