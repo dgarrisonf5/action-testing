@@ -1,4 +1,4 @@
-name: Deploy AS3
+name: TEST!!!
 
 on:
   push:
@@ -26,7 +26,6 @@ jobs:
         pip install f5-cli
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
-
     - name: Read BIGIP Host Data
       id: bigip_host
       run: | 
@@ -46,27 +45,19 @@ jobs:
  
     - name: Check AS3 Installed
       id: verify
-      run: echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
+      run: | 
+        echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
 
-    - name: just echo the output
-      id: echo
-      run: echo "THIS IS THE OUTPUT" = ${{ steps.verify.outputs.verify_output }} 
-
-    - name: Check #2
-      id: check
-      run: echo ::set-output name=verify_output_2::$(f5 bigip extension as3 verify)
 
     - name: set output variables
       id: set_outputs
       run: |
-        echo ::set-output name=as3_installed::$(cat ${{ steps.verify.outputs.verify_output }} | jq '.installed' )
-        echo ::set-output name=as3_current::$(cat ${{ steps.verify.outputs.verify_output }} | jq '.installed' )
-        echo ::set-output name=as3_latest::$(cat ${{ steps.verify.outputs.verify_output }} | jq '.installed' )
+        echo ::set-output name=as3_installed::cat ${{ steps.verify.outputs.verify_output }} | jq '.installed'
 
     - name: Evaluate verify results
       id: check_as3_installed
-      if: steps.set_outputs.output.as3_installed == false
-      run: echo "as3 not installed"
+#      if: steps.set_outputs.output.as3_installed == false
+      run: echo "THIS IS THE INSTALL STATUS " ${{ steps.set_outputs.outputs.as3_installed }}
 
     - name: upgrade if needed
       id: upgrade_as3

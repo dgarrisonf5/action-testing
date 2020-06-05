@@ -1,0 +1,25 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+      name: 'Checkout'
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.0.100-preview3-010431'
+      name: 'Setup .NET Core 3'
+    - run: |
+        dotnet restore
+        dotnet build --no-restore --configuration Release
+        dotnet test Tests.csproj --no-build --configuration Release
+        mkdir ${{ github.workspace }}/package
+        dotnet pack --no-build -c Release --output "${{ github.workspace }}/package"
+    - uses: actions/upload-artifact@v1
+      with:
+        name: nuget
+        path: ${{ github.workspace }}/package
+      name: 'Upload Package'
