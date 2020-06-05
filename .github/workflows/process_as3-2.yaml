@@ -46,13 +46,13 @@ jobs:
     - name: Check AS3 Installed
       id: verify
       run: | 
-        echo ::set-output name=verify_output::$(f5 bigip extension as3 verify 2>&1)
+        echo ::set-output name=as3_installed::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
 
 
     - name: set output variables
       id: set_outputs
       run: |
-        echo ::set-output name=as3_installed::$(echo {{ steps.verify.outputs.verify_output }} | jq '.installed')
+        echo "AS3 Install Status = ${{ steps.verify.outputs.as3_installed }}"
 
     - name: Evaluate verify results
       id: check_as3_installed
