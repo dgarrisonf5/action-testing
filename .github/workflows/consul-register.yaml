@@ -46,12 +46,12 @@ jobs:
     - name: Register Service Definition
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
-        (consul services register -http-addr=https://${{ steps.consul_host.outputs.host }} ./nginx.json)
+        (consul services register -http-addr=${{ steps.consul_host.outputs.consul_host }} ./nginx.json)
         
     - name: Show Registered Services
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
-        (consul catalog services -http-addr=https://${{ steps.consul_host.outputs.host }}
+        (consul catalog services -http-addr=${{ steps.consul_host.outputs.consul_host }}
         
         
     
