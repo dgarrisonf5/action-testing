@@ -36,16 +36,22 @@ jobs:
         
     - name: Display console output
       run: echo "This is the Consul version = ${{ steps.consul.outputs.console-output }}"
+
+    - name: Read Consul Host Data
+      id: bigip_host
+      run: | 
+        echo ::set-output name=consul_host::$(cat ./config/consul.cfg | jq '.consul[0] .host')
+        echo ::set-output name=consul_portt::$(cat ./config/consul.cfg | jq '.consul[0] .port')
         
     - name: Register Service Definition
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
-        (consul services register -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com ./nginx.json)
+        (consul services register -http-addr=https://${{ steps.consul_host.outputs.host}} ./nginx.json)
         
     - name: Show Registered Services
       run: |
         export CONSUL_HTTP_SSL_VERIFY=false
-        (consul catalog services -http-addr=https://374e9fe2-d926-4e23-a887-f69e1adab931.access.udf.f5.com)
+        (consul catalog services -http-addr=https://${{ steps.consul_host.outputs.host}}
         
         
     
