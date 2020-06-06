@@ -47,6 +47,8 @@ jobs:
       id: verify
       run: | 
         echo ::set-output name=as3_installed::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
+        echo ::set-output name=as3_installed_version::$(f5 bigip extension as3 verify 2>&1 | jq '.installed_version')
+        echo ::set-output name=as3_latest_version::$(f5 bigip extension as3 verify 2>&1 | jq '.latest_version')
 
 
     - name: set output variables
@@ -61,7 +63,7 @@ jobs:
 
     - name: upgrade if needed
       id: upgrade_as3
-      if: steps.set_outputs.outputs.as3_current < steps.set_outputs.outputs.as3_latest
+      if: steps.set_outputs.outputs.as3_installed_version < steps.set_outputs.outputs.as3_installed_version
       run: echo 'installed as3 version older than latest version'    
     
     - name: get list of changed files
