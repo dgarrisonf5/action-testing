@@ -16,7 +16,7 @@
           "class": "Service_HTTP",
           "virtualPort": 8080,
           "virtualAddresses": [
-            "42.20.20.20"
+            "32.20.20.20"
           ],
           "pool": "web_pool"
         },
