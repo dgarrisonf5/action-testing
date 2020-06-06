@@ -1,5 +1,5 @@
 {
-    "class": "ADC",
+    class": "ADC",
     "schemaVersion": "3.8.0",
     "id": "Consul_SD",
         "controls": {
