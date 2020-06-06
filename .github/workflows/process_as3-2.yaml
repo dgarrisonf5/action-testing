@@ -58,13 +58,16 @@ jobs:
 
     - name: Evaluate verify results
       id: check_as3_installed
-#      if: steps.set_outputs.output.as3_installed == false
+#      if: steps.verify_as3.output.as3_installed == false
       run: echo "AS3 install status = ${{ steps.verify_as3.output.as3_installed }}"
 
     - name: upgrade if needed
       id: upgrade_as3
       if: steps.verify_as3.outputs.as3_installed_version < steps.verify_as3.outputs.as3_latest_version
-      run: echo 'installed as3 version older than latest version'    
+      run: | 
+        echo 'installed as3 version older than latest version...upgrading'
+        f5 bigip extension as3 upgrade --version ${{ steps.verify_as3.outputs.as3_latest_version }}
+          
     
     - name: get list of changed files
       id: files
