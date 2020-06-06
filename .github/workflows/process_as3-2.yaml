@@ -79,7 +79,6 @@ jobs:
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
           echo "name of chnaged file = ${changed_file}"
- #        echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} 2>&1 | jq '.results[0] .code')
           echo ::set-output name=deploy_results::$(f5 bigip extension as3 create --declaration ${changed_file} >results.txt 2>&1)
           echo (cat results.txt | jq '.results[0] .code')         
         done
