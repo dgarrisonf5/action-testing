@@ -44,7 +44,7 @@ jobs:
         f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.bigip_password }}
  
     - name: Check AS3 Installed
-      id: verify
+      id: verify_as3
       run: | 
         echo ::set-output name=as3_installed::$(f5 bigip extension as3 verify 2>&1 | jq '.installed')
         echo ::set-output name=as3_installed_version::$(f5 bigip extension as3 verify 2>&1 | jq '.installed_version')
@@ -54,16 +54,16 @@ jobs:
     - name: set output variables
       id: set_outputs
       run: |
-        echo "AS3 Install Status = ${{ steps.verify.outputs.as3_installed }}"
+        echo "AS3 Install Status = ${{ steps.verify_as3.outputs.as3_installed }}"
 
     - name: Evaluate verify results
       id: check_as3_installed
 #      if: steps.set_outputs.output.as3_installed == false
-      run: echo "AS3 install status = ${{ steps.set_outputs.output.as3_installed }}"
+      run: echo "AS3 install status = ${{ steps.verify_as3.output.as3_installed }}"
 
     - name: upgrade if needed
       id: upgrade_as3
-      if: steps.set_outputs.outputs.as3_installed_version < steps.set_outputs.outputs.as3_installed_version
+      if: steps.verify_as3.outputs.as3_installed_version < steps.verify_as3.outputs.as3_latest_version
       run: echo 'installed as3 version older than latest version'    
     
     - name: get list of changed files
@@ -72,7 +72,7 @@ jobs:
       
     - name: deploy as3 declaration
       id: deploy_as3
-      if: steps.verify.outputs.as3_installed
+      if: steps.verify_as3.outputs.as3_installed
       run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
           echo "name of chnaged file = ${changed_file}"
