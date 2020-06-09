@@ -34,7 +34,7 @@ jobs:
         echo ::set-output name=bigip_port::$(cat ./config/bigip.cfg | jq '.bigip[0] .port')
       
     - name: Display BIGIP Host
-      run: echo "BIGIP host is :/ ${{ steps.bigip_host.outputs.bigip_host }}"
+      run: echo "BIGIP host is = ${{ steps.bigip_host.outputs.bigip_host }}"
         
     - name: F5 CLI Login
       id: login
