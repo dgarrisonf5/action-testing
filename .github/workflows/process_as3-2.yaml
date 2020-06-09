@@ -3,7 +3,7 @@ name: Deploy AS3 Redux
 on:
   push:
     paths:
-    - "declarations/**"
+    - "blah/**"
     branches: [ master ]
   pull_request:
     branches: [ master ]
