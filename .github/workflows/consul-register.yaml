@@ -8,7 +8,7 @@ on:
   push:
     paths:
     - "consul/services/register/**"
-    branches: [ master ]
+    branches: [ devel ]
   pull_request:
     branches: [ master ]
 
