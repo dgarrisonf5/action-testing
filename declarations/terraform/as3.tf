@@ -3,13 +3,12 @@ Copyright 2019 F5 Networks Inc.
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-/*
+  
 terraform {
   required_providers {
-    bigip = "1.2.0"
+    bigip = "1.2.1"
   }
 }
-*/
 
 provider "bigip" {
   address = "54.144.87.71"
