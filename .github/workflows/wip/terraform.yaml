@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
+        
+      - name: get list of changed files
+        id: files
+        uses: jitterbit/get-changed-files@v1
 
       - name: 'Terraform Setup'
         uses: hashicorp/setup-terraform@v1
@@ -27,11 +31,11 @@ jobs:
  #     - name: 'Terraform Format'
  #       run: terraform fmt -check ./declarations/terraform
 
-      - name: 'Terraform Plan'
-        run: terraform plan -var 'password=${{ secrets.bigip_password }}' ./declarations/terraform
+      - name: 'Terraform Plan''
+        run: terraform plan -var 'password=${{ secrets.bigip_password }}' -var 'filelist=${{ steps.files.output.all }}' ./declarations/terraform 
 
       - name: 'Terraform Apply'
-        run: terraform apply -var 'password=${{ secrets.bigip_password }}' --auto-approve ./declarations/terraform 
+        run: terraform apply -var 'password=${{ secrets.bigip_password }}' -var 'filelist=${{ steps.files.output.all }}' --auto-approve ./declarations/terraform 
 
 
         
