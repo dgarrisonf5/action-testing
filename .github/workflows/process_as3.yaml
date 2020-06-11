@@ -77,6 +77,9 @@ jobs:
       id: files
       uses: jitterbit/get-changed-files@v1
       
+    - name: echo the list of changed files
+      run: echo "This is the list of changed files = ${{ steps.files.output.all }}"
+      
     - name: deploy as3 declaration
       id: deploy_as3
       if: steps.verify.outputs.verify_results
