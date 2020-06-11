@@ -42,7 +42,7 @@ jobs:
         SECRET_NAME: ${{ steps.bigip_host.outputs.bigip_secret }}
       run: |
         f5 config set-defaults --disable-ssl-warnings true --auto-approve
-        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.bigip_password }}
+        f5 login --authentication-provider bigip --host ${{ steps.bigip_host.outputs.bigip_host }} --user admin --password ${{ secrets.bigip_aws_password }}
  
     - name: Check AS3 Installed
       id: verify
