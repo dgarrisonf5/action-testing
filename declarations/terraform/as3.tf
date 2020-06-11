@@ -12,10 +12,15 @@ terraform {
 
 
 provider "bigip" {
-  address = "b3f01d41-3618-476c-a94f-3a9be92120e9.access.udf.f5.com"
+  address = "54.144.87.71"
   username = "admin"
   password = var.password
 }
+
+output "file_list" {
+  value = var.filelist
+}
+
 
 // config_name is used to set the identity of as3 resource which is unique for resource.
 
