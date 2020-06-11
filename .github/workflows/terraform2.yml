@@ -31,7 +31,7 @@ jobs:
  #     - name: 'Terraform Format'
  #       run: terraform fmt -check ./declarations/terraform
 
-      - name: 'Terraform Plan''
+      - name: 'Terraform Plan'
         run: terraform plan -var 'password=${{ secrets.bigip_aws_password }}' -var 'filelist=${{ steps.files.output.all }}' ./declarations/terraform 
 
       - name: 'Terraform Apply'
