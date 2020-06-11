@@ -19,6 +19,9 @@ jobs:
       - name: get list of changed files
         id: files
         uses: jitterbit/get-changed-files@v1
+      
+      - name: echo the file list
+        run: echo "This is the list of files = ${{ steps.files.output.all }}"
 
       - name: 'Terraform Setup'
         uses: hashicorp/setup-terraform@v1
